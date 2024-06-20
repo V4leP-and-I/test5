@@ -57,6 +57,7 @@ class NewsController extends AbstractController
         ];
 
         return new JsonResponse($data);
+        // первый
     }
 }
 
