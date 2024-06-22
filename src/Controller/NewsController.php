@@ -7,9 +7,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\NewsRepository;
+use App\Entity\News;
+use App\Form\AddNewsFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class NewsController extends AbstractController
 {
+
+    private $entityManager;
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/news', name: 'app_news')]
     public function index(): Response
     {
@@ -58,6 +69,34 @@ class NewsController extends AbstractController
 
         return new JsonResponse($data);
         // первый
+    }
+
+    #[Route('/news/add-news', name: 'add_news')]
+    public function addNews(Request $request)
+    {
+        $news = new News();
+
+        $news->setDate(new \DateTime());
+        
+        $form = $this->createForm(AddNewsFormType::class, $news);
+
+        $form->handleRequest($request);
+
+        // $user = $this->getUser();
+        // $news->setIduser($user);
+
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($news);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('news'); 
+        }
+
+        return $this->render('news/add_news.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
 

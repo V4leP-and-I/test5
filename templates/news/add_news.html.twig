@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+<content class="s">
+    <div class="login-l">
+        <h1 class="fw-light">Созать новый блог</h1>
+        {{ form_start(form) }}
+        <div class="login-l">
+            <div class="inp form-floating">
+                {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="inp form-floating">
+                {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="inp form-floating">
+                {{ form_row(form.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="inp form-floating">
+                {{ form_row(form.submit, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+</content>
+{% endblock %}
