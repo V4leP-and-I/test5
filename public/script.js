@@ -65,12 +65,10 @@ function show_cards(mydata) {
 
         block.append(text_block);
 
-        // if (mydata[i].img && mydata[i].img.trim() !== ""){
-
-        // }
-
         var image = document.createElement("img");
-        image.src = mydata[i].img;
+        if (mydata[i].img && mydata[i].img.trim() !== ""){
+            image.src = 'images\\' + mydata[i].img;
+        }
         block.append(image);
 
         var title = document.createElement('div');
@@ -125,4 +123,4 @@ function show_cards(mydata) {
 //     mydata2.push(mydata[el]);
 // }
 
-console.log(data);
+// console.log(data);
