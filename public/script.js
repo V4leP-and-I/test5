@@ -20,59 +20,103 @@ fetchData().then(() => {
     show_cards(data);
 });
 
-var mydata = JSON.parse(data);
-var main_block = document.querySelector(".main_content");
 
-function show_cards() {
+// var mydata = JSON.parse(data);
+
+var month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+
+function show_cards(mydata) {
+    var main_block = document.querySelector(".container");
     for (let i = 0; i < mydata.length; i++) {
         var block = document.createElement("div");
-        block.className = "main_blocks";
+        block.className = "card";
         main_block.append(block);
 
-        var image = document.createElement("img");
-        image.src = mydata[i].pic;
-        block.append(image);
+        // var image = document.createElement("img");
+        // image.src = mydata[i].pic;
+        // block.append(image);
 
         var text_block = document.createElement("div");
-        text_block.className = "main_blocks_text";
-        block.append(text_block);
-
-        var title = document.createElement('p');
-        title.innerHTML = mydata[i].title;
-        title.className = "main_content_topic";
-        text_block.append(title);
-
-        var text = document.createElement('p');
-        text.innerHTML = mydata[i].text;
-        text.className = "main_content_text";
-        text_block.append(text);
-
-        var btn_block = document.createElement("div");
-        btn_block.className = "main_content_btn";
-        block.append(btn_block);
-
-        var btn = document.createElement("a");
-        btn.className = "main_content_btn_text";
-        btn.innerHTML = "Подробнее";
-        text_block.append(btn);
-
-        if (i == 0) {
-            btn.classList.add("first_btn");
-            text_block.classList.add("first_block");
-        }
-        else if (i == 1) {
-            btn.classList.add("second_btn");
-            text_block.classList.add("second_block");
-        }
-        else {
-            btn.classList.add("thrid_btn");
-            text_block.classList.add("thrid_block");
-        }
+        text_block.className = "head";
 
         var type = document.createElement('a');
         type.innerHTML = mydata[i].type;
-        type.setAttribute("style", "display: none");
+        type.className = "type";
+        // type.setAttribute("style", "display: none");
         text_block.append(type);
+
+        // var date = document.createElement('p');
+        // date.innerHTML = mydata[i].date;
+        // date.className = "date";
+        // text_block.append(date);
+        var dateTimeString = mydata[i].date;
+        var dateTime = new Date(dateTimeString);
+
+        // var year = dateTime.getFullYear();
+        var mnth = month[dateTime.getMonth()]; // Месяцы в JavaScript начинаются с 0, поэтому добавляем 1
+        var day = dateTime.getDate();
+        var hours = dateTime.getHours();
+        var minutes = dateTime.getMinutes();
+
+        var date = document.createElement('a');
+        date.innerHTML = day + ' ' + mnth + ' ' + hours + ':' + minutes;
+        date.className = "date";
+        text_block.append(date);
+
+        block.append(text_block);
+
+        // if (mydata[i].img && mydata[i].img.trim() !== ""){
+
+        // }
+
+        var image = document.createElement("img");
+        image.src = mydata[i].img;
+        block.append(image);
+
+        var title = document.createElement('div');
+        title.innerHTML = mydata[i].title;
+        title.className = "title";
+        block.append(title);
+
+        // var type = document.createElement('p');
+        // type.innerHTML = mydata[i].type;
+        // type.className = "main_content_type";
+        // text_block.append(type);
+
+        var descr = document.createElement('div');
+        descr.innerHTML = mydata[i].description;
+        descr.className = "descr";
+        block.append(descr);
+
+        // var btn_block = document.createElement("div");
+        // btn_block.className = "main_content_btn";
+        // block.append(btn_block);
+
+        // var btn = document.createElement("a");
+        // btn.className = "main_content_btn_text";
+        // btn.innerHTML = "Подробнее";
+        // text_block.append(btn);
+
+        // if (i == 0) {
+        //     btn.classList.add("first_btn");
+        //     text_block.classList.add("first_block");
+        // }
+        // else if (i == 1) {
+        //     btn.classList.add("second_btn");
+        //     text_block.classList.add("second_block");
+        // }
+        // else {
+        //     btn.classList.add("thrid_btn");
+        //     text_block.classList.add("thrid_block");
+        // }
+
+        // btn.classList.add("thrid_btn");
+        // text_block.classList.add("thrid_block");
+
+        // var type = document.createElement('a');
+        // type.innerHTML = mydata[i].type;
+        // type.setAttribute("style", "display: none");
+        // text_block.append(type);
     }
 }
 
