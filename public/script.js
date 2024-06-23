@@ -86,6 +86,12 @@ function show_cards(mydata) {
         descr.className = "descr";
         block.append(descr);
 
+        var id_n = document.createElement('div');
+        id.innerHTML = 'редактировать';
+        // id.href = mydata[i].id + '\\edit';
+        descr.className = "edit";
+        block.append(id_n);
+
         // var btn_block = document.createElement("div");
         // btn_block.className = "main_content_btn";
         // block.append(btn_block);

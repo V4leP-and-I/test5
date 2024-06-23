@@ -7,3 +7,11 @@ controllers:
 add_news:
     path: /news/add-news
     controller: App\Controller\NewsController::addNews
+
+news_edit:
+    path: /news/{id}/edit
+    controller: App\Controller\NewsController::edit
+
+news:
+    path: /news
+    controller: App\Controller\NewsController::index

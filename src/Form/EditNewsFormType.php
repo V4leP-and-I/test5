@@ -11,22 +11,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class AddNewsFormType extends AbstractType
+class EditNewsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('title')
-            // ->add('description')
-            // // ->add('date', null, [
-            // //     'widget' => 'single_text'
-            // // ])
-            // ->add('type')
-            // ->add('img')
             ->add('title', TextType::class, ['label' => 'Название'])
             ->add('description', TextareaType::class, ['label' => 'Описание'])
             ->add('type', TextType::class, ['label' => 'Категория'])
-            ->add('submit', SubmitType::class, ['label' => 'Опубликовать'])
+            ->add('submit', SubmitType::class, ['label' => 'Обновить'])
             ->add('img', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false, // не связываем сущность с полем формы
